@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kkd4755-maker.github.io/my-port-polio/sitemap.xml

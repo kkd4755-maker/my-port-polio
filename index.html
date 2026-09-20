@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/my-port-polio/favicon.svg" />
+    <!-- 제목용 세리프 서브셋. crossorigin은 동일 출처라도 폰트 preload에 필수다. -->
+    <link rel="preload" href="/my-port-polio/fonts/noto-serif-kr-heading.woff2" as="font" type="font/woff2" crossorigin />
+    <!--
+      <title>과 description / OG / Twitter Card / JSON-LD 는 vite.config.ts 의
+      portfolio-head-meta 플러그인이 src/data/profile.ts 를 읽어 빌드 시점에 주입한다.
+      여기에 직접 적지 않는 이유는 콘텐츠의 단일 출처를 profile.ts 하나로 두기 위해서다.
+    -->
+    <!--
+      FOUC 방지: 번들이 로드되기 전에 테마를 확정한다.
+      이 스크립트를 <head>에서 동기 실행하지 않으면 다크 모드 사용자에게 흰 화면이 번쩍인다.
+    -->
+    <script>
+      ;(function () {
+        var root = document.documentElement
+        var stored = null
+        try {
+          stored = localStorage.getItem('theme')
+        } catch (e) {
+          /* 프라이빗 모드에서는 접근 자체가 예외를 던진다 */
+        }
+        if (stored !== 'light' && stored !== 'dark') {
+          stored = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        root.dataset.theme = stored
+      })()
+    </script>
+    <script type="module" crossorigin src="/my-port-polio/assets/index-Cm5rVc7K.js"></script>
+    <link rel="stylesheet" crossorigin href="/my-port-polio/assets/index-BRoGi8-j.css">
+    <title>김도현 · 쓰는 것으로 생각을 정리하는 프론트엔드 개발자</title>
+    <meta name="description" content="웹 성능과 접근성을 중심에 두고 프론트엔드를 만드는 김도현의 홈입니다. 경력과 그동안 쓴 글을 모아두었습니다.">
+    <meta name="author" content="김도현">
+    <link rel="canonical" href="https://kkd4755-maker.github.io/my-port-polio/">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="김도현">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:url" content="https://kkd4755-maker.github.io/my-port-polio/">
+    <meta property="og:title" content="김도현 · 쓰는 것으로 생각을 정리하는 프론트엔드 개발자">
+    <meta property="og:description" content="웹 성능과 접근성을 중심에 두고 프론트엔드를 만드는 김도현의 홈입니다. 경력과 그동안 쓴 글을 모아두었습니다.">
+    <meta property="og:image" content="https://kkd4755-maker.github.io/my-port-polio/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="김도현 — 쓰는 것으로 생각을 정리하는 프론트엔드 개발자">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="김도현 · 쓰는 것으로 생각을 정리하는 프론트엔드 개발자">
+    <meta name="twitter:description" content="웹 성능과 접근성을 중심에 두고 프론트엔드를 만드는 김도현의 홈입니다. 경력과 그동안 쓴 글을 모아두었습니다.">
+    <meta name="twitter:image" content="https://kkd4755-maker.github.io/my-port-polio/og.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"김도현","alternateName":"Dohyun Kim","url":"https://kkd4755-maker.github.io/my-port-polio/","image":"https://kkd4755-maker.github.io/my-port-polio/og.png","jobTitle":"프론트엔드 엔지니어","description":"웹 성능과 접근성을 중심에 두고 프론트엔드를 만드는 김도현의 홈입니다. 경력과 그동안 쓴 글을 모아두었습니다.","email":"mailto:hello@example.com","sameAs":["https://github.com/example","https://velog.io/@example","https://www.linkedin.com/in/example"]}</script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
