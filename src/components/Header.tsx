@@ -1,4 +1,5 @@
 import { navItems, profile } from '../data/profile.ts'
+import { asset } from '../lib/url.ts'
 
 /**
  * 모바일(~639px)에서는 앵커 목록을 CSS로 숨기고 로고와 테마 토글만 남긴다.
@@ -26,10 +27,10 @@ export function Header() {
 
         <button className="theme-toggle" type="button" id="theme-toggle" aria-pressed="false">
           <svg className="icon theme-toggle__sun" aria-hidden="true" focusable="false">
-            <use href="/icons.svg#sun" />
+            <use href={`${asset('/icons.svg')}#sun`} />
           </svg>{' '}
           <svg className="icon theme-toggle__moon" aria-hidden="true" focusable="false">
-            <use href="/icons.svg#moon" />
+            <use href={`${asset('/icons.svg')}#moon`} />
           </svg>
         </button>
       </div>

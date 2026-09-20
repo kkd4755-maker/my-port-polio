@@ -8,6 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run dev` — HMR이 적용된 Vite 개발 서버 (http://localhost:5173/).
 - `npm run build` — `tsc`로 타입 검사(출력 없음)를 한 뒤 `vite build`를 실행합니다.
 - `npm run preview` — 프로덕션 빌드를 로컬에서 서빙합니다.
+- `npm run deploy` — 빌드한 뒤 `dist`를 GitHub의 `gh-pages` 브랜치로 올립니다(`gh-pages` 패키지).
+- 개발 서버와 미리보기는 `base` 때문에 `http://localhost:5173/my-port-polio/`처럼 하위 경로 아래에서 뜹니다.
 
 테스트 러너와 린터는 설정되어 있지 않습니다.
 
@@ -30,7 +32,7 @@ Header, About, Projects, Contact는 React 컴포넌트이고 Hero·Experience·W
   - `src/lib/` — `html.ts`(태그드 템플릿 + 이스케이프), `theme.ts`, `reveal.ts`(IntersectionObserver).
 - `innerHTML`에 데이터를 넣으므로 문자열 조립은 `lib/html.ts`의 `` html`` `` 태그드 템플릿을 씁니다. 보간값은 자동 이스케이프되고, HTML을 그대로 넣어야 하면 `raw()`로 감쌉니다.
 - `vite.config.ts`의 플러그인이 `src/data/profile.ts`를 읽어 `<title>`·description·OG·Twitter Card·JSON-LD와 `robots.txt`·`sitemap.xml`을 **빌드 시점에** 생성합니다. 메타를 `index.html`에 직접 적지 마세요.
-- `public/`의 정적 에셋은 절대 경로로 참조합니다 (예: `/icons.svg#github` 스프라이트).
+- `public/`의 정적 에셋은 `src/lib/url.ts`의 `asset('/icons.svg')`로 참조합니다. 배포 주소가 하위 경로(`/my-port-polio/`)라서 코드 안에서 `/icons.svg`처럼 루트 절대 경로를 직접 쓰면 배포본에서 깨집니다. `index.html`과 CSS의 경로는 Vite가 알아서 처리합니다. `base`는 `vite.config.ts`가 `profile.siteUrl`의 경로에서 뽑습니다.
 - 스타일은 `src/App.css` 한 파일이며, 색은 전부 CSS 커스텀 프로퍼티입니다. 다크 테마는 `:root[data-theme='dark']`에서 값만 바꿉니다. 하드코딩된 색을 새로 추가하지 마세요.
 
 ## TypeScript 설정 참고
@@ -46,11 +48,11 @@ Header, About, Projects, Contact는 React 컴포넌트이고 Hero·Experience·W
 
 0~7단계 구현이 끝났습니다. 남은 단계는 다음 두 가지입니다.
 
-- **8단계, 공개:** GitHub 원격(`kkd4755-maker/my-port-polio`)에는 푸시를 마쳤습니다. 남은 것은 GitHub Pages 배포입니다. 저장소 이름을 `kkd4755-maker.github.io`로 바꿔 루트 주소로 서비스하므로 `base` 설정은 필요 없습니다. 워크플로(`.github/workflows/deploy.yml`)와 `siteUrl`은 준비돼 있고, 저장소 이름 변경과 Pages Source 설정이 남았습니다.
+- **8단계, 공개:** GitHub 원격(`kkd4755-maker/my-port-polio`) 푸시와 `gh-pages` 설정은 끝났습니다. 남은 것은 `npm run deploy`로 `gh-pages` 브랜치를 올리고, 저장소 Settings → Pages에서 Source를 `gh-pages` 브랜치로 설정하는 것입니다. 주소는 `https://kkd4755-maker.github.io/my-port-polio/`입니다.
 - **9단계, 실물 콘텐츠 교체:** `src/data/`의 `profile.ts`, `experience.ts`, `posts.ts`를 실제 내용으로 바꿉니다.
 
 배포 전에 반드시 바꿔야 할 값 (요구사항 §8.4):
 
-- `src/data/profile.ts`의 `siteUrl` — 현재 `https://example.com`입니다.
+- `src/data/profile.ts`의 `siteUrl` — 이미 `https://kkd4755-maker.github.io/my-port-polio`로 바꿨습니다. 배포 주소를 바꾸면 `base`도 이 값에서 따라 바뀝니다.
 - `public/avatar.svg` — 이니셜 아바타를 실물 사진으로 교체합니다.
 - `docs/og-source.svg`의 이름·태그라인을 고친 뒤 `public/og.png`(1200×630)를 다시 만듭니다.

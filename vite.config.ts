@@ -11,6 +11,8 @@ import { profile } from './src/data/profile.ts'
  */
 
 const origin = profile.siteUrl.replace(/\/+$/, '')
+// 배포 경로(base)는 siteUrl의 경로에서 뽑는다. GitHub Pages 하위 경로 배포면 '/my-port-polio/', 루트면 '/'.
+const base = new URL(origin).pathname.replace(/\/?$/, '/')
 const pageTitle = `${profile.nameKo} · ${profile.tagline}`
 const ogImage = `${origin}/og.png`
 
@@ -104,5 +106,6 @@ function siteFiles(): Plugin {
 }
 
 export default defineConfig({
+  base,
   plugins: [react(), headMeta(), siteFiles()],
 })

@@ -1,3 +1,5 @@
+import { asset } from './url.ts'
+
 /**
  * `innerHTML`에 문자열을 그대로 대입하는 구조이므로, 보간되는 값은 기본적으로 이스케이프한다.
  * 지금은 저장소 안의 데이터만 들어가지만 규약으로 세워두면 나중에 외부 데이터를 넣을 때 사고를 막는다.
@@ -48,6 +50,6 @@ export function render(value: RawHtml): string {
 /** `/icons.svg` 스프라이트의 심볼을 참조하는 인라인 아이콘. 장식용이므로 접근성 트리에서 숨긴다. */
 export function icon(name: string, className = 'icon'): RawHtml {
   return html`<svg class="${className}" aria-hidden="true" focusable="false">
-    <use href="/icons.svg#${name}"></use>
+    <use href="${asset('/icons.svg')}#${name}"></use>
   </svg>`
 }

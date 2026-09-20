@@ -1,13 +1,14 @@
 import { html, icon } from '../lib/html.ts'
 import type { RawHtml } from '../lib/html.ts'
 import { profile } from '../data/profile.ts'
+import { asset } from '../lib/url.ts'
 
 export function hero(): RawHtml {
   return html`
     <section class="hero" aria-labelledby="hero-name">
       <img
         class="hero__avatar reveal"
-        src="${profile.avatar.src}"
+        src="${asset(profile.avatar.src)}"
         alt="${profile.avatar.alt}"
         width="120"
         height="120"

@@ -38,7 +38,7 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  siteUrl: 'https://kkd4755-maker.github.io',
+  siteUrl: 'https://kkd4755-maker.github.io/my-port-polio',
   nameKo: '김도현',
   nameEn: 'Dohyun Kim',
   tagline: '쓰는 것으로 생각을 정리하는 프론트엔드 개발자',
