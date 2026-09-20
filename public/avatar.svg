@@ -1,0 +1,26 @@
+<!--
+  플레이스홀더 아바타. 실물 사진이 준비되면 public/ 에 파일을 두고
+  src/data/profile.ts 의 avatar.src 경로만 바꾸면 된다.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b4a6b" />
+      <stop offset="1" stop-color="#1e2740" />
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="60" fill="url(#a)" />
+  <text
+    x="60"
+    y="61"
+    fill="#f3f4f8"
+    font-family="Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif"
+    font-size="44"
+    font-weight="600"
+    letter-spacing="1"
+    text-anchor="middle"
+    dominant-baseline="central"
+  >
+    KD
+  </text>
+</svg>

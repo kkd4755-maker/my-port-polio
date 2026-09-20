@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- 제목용 세리프 서브셋. crossorigin은 동일 출처라도 폰트 preload에 필수다. -->
+    <link rel="preload" href="/fonts/noto-serif-kr-heading.woff2" as="font" type="font/woff2" crossorigin />
+    <!--
+      <title>과 description / OG / Twitter Card / JSON-LD 는 vite.config.ts 의
+      portfolio-head-meta 플러그인이 src/data/profile.ts 를 읽어 빌드 시점에 주입한다.
+      여기에 직접 적지 않는 이유는 콘텐츠의 단일 출처를 profile.ts 하나로 두기 위해서다.
+    -->
+    <!--
+      FOUC 방지: 번들이 로드되기 전에 테마를 확정한다.
+      이 스크립트를 <head>에서 동기 실행하지 않으면 다크 모드 사용자에게 흰 화면이 번쩍인다.
+    -->
+    <script>
+      ;(function () {
+        var root = document.documentElement
+        var stored = null
+        try {
+          stored = localStorage.getItem('theme')
+        } catch (e) {
+          /* 프라이빗 모드에서는 접근 자체가 예외를 던진다 */
+        }
+        if (stored !== 'light' && stored !== 'dark') {
+          stored = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        root.dataset.theme = stored
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
