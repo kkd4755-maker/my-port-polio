@@ -38,7 +38,7 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  siteUrl: 'https://example.com',
+  siteUrl: 'https://kkd4755-maker.github.io',
   nameKo: '김도현',
   nameEn: 'Dohyun Kim',
   tagline: '쓰는 것으로 생각을 정리하는 프론트엔드 개발자',

@@ -46,7 +46,7 @@ Header, About, Projects, Contact는 React 컴포넌트이고 Hero·Experience·W
 
 0~7단계 구현이 끝났습니다. 남은 단계는 다음 두 가지입니다.
 
-- **8단계, 공개:** `git init` → GitHub 원격 → Vercel 연결. 계정 연결이 필요합니다.
+- **8단계, 공개:** GitHub 원격(`kkd4755-maker/my-port-polio`)에는 푸시를 마쳤습니다. 남은 것은 GitHub Pages 배포입니다. 저장소 이름을 `kkd4755-maker.github.io`로 바꿔 루트 주소로 서비스하므로 `base` 설정은 필요 없습니다. 워크플로(`.github/workflows/deploy.yml`)와 `siteUrl`은 준비돼 있고, 저장소 이름 변경과 Pages Source 설정이 남았습니다.
 - **9단계, 실물 콘텐츠 교체:** `src/data/`의 `profile.ts`, `experience.ts`, `posts.ts`를 실제 내용으로 바꿉니다.
 
 배포 전에 반드시 바꿔야 할 값 (요구사항 §8.4):
